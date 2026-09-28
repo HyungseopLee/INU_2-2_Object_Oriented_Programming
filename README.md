@@ -281,10 +281,6 @@ Box<int> b1(10);   // int용 Box 클래스가 이 시점에 만들어짐
 | `priority_queue` | 우선순위 큐 (힙 기반, 기본 내부 컨테이너: `vector`) | [100](100_priority_queue.cpp), [101](101_pritority_queue.cpp) |
 
 > `stack`/`queue`/`priority_queue`는 컨테이너가 아니라, 다른 컨테이너 위에 LIFO/FIFO/힙 인터페이스만 씌운 **컨테이너 어댑터**입니다. `stack`·`queue`는 기본적으로 `deque`를 내부에서 사용하고, `priority_queue`는 기본적으로 `vector`를 사용합니다(둘 다 두 번째 템플릿 인자로 바꿀 수 있음: `stack<int, list<int>>`, `priority_queue<int, vector<int>, MyCompare<int>>`) → [098_container_adapter.cpp](098_container_adapter.cpp), [101_pritority_queue.cpp](101_pritority_queue.cpp)
->
-> ⚠️ **주의**: `map`/`set`은 흔히 "hash table"로 오해하기 쉽지만, 실제로는 **레드-블랙 트리 기반의 정렬된 컨테이너**입니다(그래서 원소가 항상 key 기준 오름차순으로 정렬되어 있음). 진짜 해시 테이블 기반 컨테이너는 `unordered_map`/`unordered_set`이며, 이들은 정렬을 보장하지 않는 대신 평균 O(1) 검색을 제공합니다.
->
-> ⚠️ **주의**: `vector`는 **연속된 메모리(동적 배열)**를 사용하는 컨테이너입니다. Linked list가 아니라서 임의 접근(`v[i]`)이 O(1)로 빠르지만, 중간 삽입/삭제는 뒤 원소들을 밀어야 해서 O(n)입니다. 실제 연결 리스트가 필요하면 `list`(이중 연결) 또는 `forward_list`(단일 연결)를 사용해야 합니다.
 
 ### 반복자 & 알고리즘
 
